@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/bootstrap.min.css' />
+    <!--for responsive feature -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='/css/bootstrap-responsive.css'>
+    <style>
+       body {
+         padding-top:30px;
+       }
+    </style>
+ </head>
+  <body>
+    <div class='container'>
+      <div class='hero-unit'>
+         <h1>Mission Success</h1>
+         <p>success is different, so don't using <em>Hello World </em> again on your code after studying first programming, ofcourse don't same with me, LOL...zzz</p>
+         <a id="cool" class="btn btn-success btn-small">I'm Cool Right? </a>
+      </div>
+   </div>
+   <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script> 
+   <script src="/js/bootstrap.min.js" ></script>
+   <script> 
+      $(function(){
+         $("#cool").click(function(){
+            alert('you seemed so curious that I was cool, hahaaa...LOL');
+         });
+      });
+   </script>
+  </body>
+</html>
