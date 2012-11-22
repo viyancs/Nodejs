@@ -1,15 +1,10 @@
 
 /*
- * GET home page.
+ * Controller Top Page
  */
 
 exports.index = function(req, res){
   
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Login Page' });
   
-  
-  /*
-   * background Process
-   */
-  GLOBAL_SOCKET.emit('msg',{ info:'Mission Success'});
 };

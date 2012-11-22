@@ -12,15 +12,26 @@ var app = express();
 var server = http.createServer(app);
 var io   = require('socket.io').listen(server);
 var routes = require('./config/routes')(app);
+var obj = {};
 GLOBAL_SOCKET = null; //don't use var because global variable'
+USERS = [];
 
 /**
  * socket io code behind
  * =============================================================================
  */
 io.sockets.on('connection', function (socket) {
+    
     GLOBAL_SOCKET = socket;
+    obj[socket.id] = socket.id;
+    USERS.push(obj);
+    
     console.log("client with id  " + socket.id +" is connected");
+    socket.on('disconnect', function(){
+        socket.broadcast.emit('logout',{ announcement: socket.id + ' disconnected' });
+        console.log("client with id  " + socket.id +" is disconnected");
+    });
+    
 });
 
 
