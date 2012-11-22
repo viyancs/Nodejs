@@ -5,9 +5,9 @@
 
 exports.index = function(req, res){
   
-  res.render('arena', { title: 'Arena' });
+  res.render('arena', { title: 'Arena' },function(err,html){
+	GLOBAL_SOCKET.emit('msg',{info:'mission Successs'});
+  });
   
     
-  //background process
-  GLOBAL_SOCKET.emit('msg',{ info:'Mission Success'});
 };

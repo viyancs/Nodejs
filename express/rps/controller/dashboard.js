@@ -5,8 +5,8 @@
 
 exports.index = function(req, res){
   
-  res.render('dashboard', { title: 'Dashboard' });
+  res.render('dashboard', { title: 'Dashboard' },function(err,html){
+	GLOBAL_SOCKET.broadcast.emit('online',{'users':USERS});
+  });
   
-  //background process
-  GLOBAL_SOCKET.broadcast.emit('online',USERS);
 };

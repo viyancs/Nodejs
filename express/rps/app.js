@@ -16,6 +16,16 @@ var obj = {};
 GLOBAL_SOCKET = null; //don't use var because global variable'
 USERS = [];
 
+removeArray = function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
 /**
  * socket io code behind
  * =============================================================================
@@ -24,11 +34,13 @@ io.sockets.on('connection', function (socket) {
     
     GLOBAL_SOCKET = socket;
     obj[socket.id] = socket.id;
-    USERS.push(obj);
+    USERS.push(socket.id);
     
     console.log("client with id  " + socket.id +" is connected");
     socket.on('disconnect', function(){
         socket.broadcast.emit('logout',{ announcement: socket.id + ' disconnected' });
+	removeArray(USERS,socket.id);
+	GLOBAL_SOCKET.broadcast.emit('online',{'users':USERS});
         console.log("client with id  " + socket.id +" is disconnected");
     });
     
