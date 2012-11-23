@@ -35,7 +35,6 @@ io.sockets.on('connection', function (socket) {
     GLOBAL_SOCKET = socket;
     obj[socket.id] = socket.id;
     USERS.push(socket.id);
-    
     console.log("client with id  " + socket.id +" is connected");
     socket.on('disconnect', function(){
         socket.broadcast.emit('logout',{ announcement: socket.id + ' disconnected' });
